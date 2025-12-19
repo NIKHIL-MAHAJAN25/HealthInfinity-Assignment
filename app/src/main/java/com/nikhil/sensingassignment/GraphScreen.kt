@@ -1,11 +1,13 @@
 package com.nikhil.sensingassignment
 
-import android.graphics.Color
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import java.nio.file.WatchEvent.Modifier
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun GraphScreen(viewModel: GraphViewModel)
@@ -14,7 +16,16 @@ fun GraphScreen(viewModel: GraphViewModel)
     Canvas(
         modifier=Modifier
             .fillMaxSize()
-            .background(Color.BLACK)
+            .background(Color.Black)
     )
+    {
+        val radius = graphbeats.size.toFloat()
+
+        drawCircle(
+            color = Color.Red,
+            radius = radius + 10f,
+            center = center
+        )
+    }
 }
 
