@@ -16,6 +16,8 @@ class GraphViewModel:ViewModel()
 {
     private val signal=MutableStateFlow<List<Int>>(emptyList())
     val signalstate=signal.asStateFlow()
+    private val smoothbutton=MutableStateFlow(false)
+    val _smoothbutton=smoothbutton.asStateFlow()
     init {
         startnumber()
     }
@@ -36,5 +38,29 @@ class GraphViewModel:ViewModel()
                 delay(100)
             }
        }
+    }
+    fun togglesmooth()
+    {
+        smoothbutton.value = !smoothbutton.value
+    }
+    fun smoothlist(rawlist:List<Int>):List<Int>
+    {
+        val smoothlist= mutableListOf<Int>()
+        val avgsize=10
+        for(i in rawlist.indices)
+            if(rawlist.size<10)
+            {
+                smoothlist.add(rawlist[i])
+            }
+        else{
+            var sum=0
+                for(j in 0 until avgsize)
+                {
+                    sum+=rawlist[i-j]
+                }
+                val avg=sum/avgsize
+                smoothlist.add(avg)
+            }
+        return smoothlist
     }
 }
