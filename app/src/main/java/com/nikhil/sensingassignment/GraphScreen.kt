@@ -66,7 +66,7 @@ fun GraphScreen(viewModel: GraphViewModel) {
             }
 
 
-
+            val linecolor = if (issmooth) Color.Cyan else Color.Green
             if (pointsToDraw.isNotEmpty()) {
                 val firstY = size.height - (pointsToDraw[0] / 100f * size.height)
                 path.moveTo(0f, firstY)
@@ -79,7 +79,7 @@ fun GraphScreen(viewModel: GraphViewModel) {
                 }
                   drawPath(
                     path = path,
-                    color = Color.Green,
+                    color = linecolor,
                     style = Stroke(width = 5f)
                 )
             }
