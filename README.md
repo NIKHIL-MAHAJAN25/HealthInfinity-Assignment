@@ -1,7 +1,7 @@
-# Real Time Signal Visualizer
+# Real-Time Signal Visualizer
 A native app (Kotlin/Compose for Android) that simulates a live data feed (e.g., a heart rate or sensor signal) and renders it on a custom-drawn graph.
 
-## Question 1 - Archiecture and Thread Safety
+## Question 1 - Architecture and Thread Safety
 ### Architecture
 As stated in the requirements that data must be independent of UI rendering and data points should not disappear on screen rotation, hence i chose MVVM architecture where it has
 - ViewModel- Contains the logic
