@@ -34,8 +34,18 @@ As we know the numbers keep on generating indefinitely , the list of data points
  if (newlist.size > 300) 
  {
     newlist.removeAt(0)
-} ```
+} 
+```
 
 ## Question 3 - Architectural Changes to keep ui responsive at 1ms
+My current approach updates the UI state every time a new data point arrives. At 1ms intervals (1000 updates/second), this would cause performance issues because standard mobile screens only refresh at 60Hz (60 times/second). Trying to redraw the screen 1000 times a second is wasteful and would freeze the UI.
+To handle this, I would change the architecture to a Producer-Consumer pattern with Batching:
 
+1. Decoupling: I would separate the "Data Collection" from the "UI Update." The background thread would continue collecting data at 1ms into a temporary buffer/queue.
+
+2. Batch Updates: Instead of pushing every single point to the UI immediately, I would have a separate loop that wakes up every 16ms (synced with the 60Hz frame rate).
+
+3. Processing: This loop would take all the new points accumulated in that 16ms window (approx. 16 points) and send them to the UI in one single update.
+
+This way, the data is still accurate, but the UI isn't overwhelmed by unnecessary redraw requests.
 
