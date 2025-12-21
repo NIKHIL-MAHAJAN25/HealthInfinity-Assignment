@@ -47,20 +47,15 @@ class GraphViewModel:ViewModel()
     {
         val smoothlist= mutableListOf<Int>()
         val avgsize=10
-        for(i in rawlist.indices)
-            if(i<avgsize)
-            {
-                smoothlist.add(rawlist[i])
+        for(i in rawlist.indices) {
+            val currentWindowSize = if (i < avgsize) i + 1 else avgsize
+            var sum = 0
+            for (j in 0 until currentWindowSize) {
+                sum += rawlist[i - j]
             }
-        else{
-            var sum=0
-                for(j in 0 until avgsize)
-                {
-                    sum+=rawlist[i-j]
-                }
-                val avg=sum/avgsize
-                smoothlist.add(avg)
-            }
+            val avg = sum / currentWindowSize
+            smoothlist.add(avg)
+        }
         return smoothlist
     }
 }
