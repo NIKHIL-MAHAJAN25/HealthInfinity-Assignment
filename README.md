@@ -24,3 +24,9 @@ To achieve this, I used Kotlin Coroutines with Dispatchers.Default.
 - Background Processing: I wrapped the data generation loop in viewModelScope.launch(Dispatchers.Default). This ensures that the random number generation and the moving average calculations happen on a background thread, not the main UI thread.
 
 - State Updates: I used StateFlow.update { } to modify the list. This function is thread-safe, so I don't run into issues where the UI tries to read the list at the exact same moment the background thread is writing to it.
+
+## Question 2 - Memory Management
+As we know the numbers keep on generating indefinitely , the list of data points could grow infinitely and the app could crash. To prevent this i used a fixed size buffer
+- I set a limit of 300 points (which equals 30 seconds of data at 100 ms intervals)
+- If the list exceeds 300, the oldest point at index 0 is removed
+- This ensures memory usage stays constant
