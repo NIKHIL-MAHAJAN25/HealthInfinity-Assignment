@@ -6,8 +6,8 @@ A native app (Kotlin/Compose for Android) that simulates a live data feed (e.g.,
 As stated in the requirements that data must be independent of UI rendering and data points should not disappear on screen rotation, hence i chose MVVM architecture where it has
 - ViewModel- Contains the logic
 - Repository - Contains network fetching logic (Not required in this assignment)
-- UI Screen - Handles all the compose UI
-I Chose MVVM architecture because
+- UI Screen - Handles all the compose UI  
+I Chose MVVM architecture because:  
 1. **Configuration Change Survival**: ViewModels automatically survive screen rotation. When the device rotates, the Composable is destroyed and recreated, but the ViewModel and its data persist. This ensures the 300 accumulated data points are not lost.
 
 2. **Separation of Concerns**: Business logic (data generation, smoothing) is isolated from UI code, making the app easier to test and maintain.
