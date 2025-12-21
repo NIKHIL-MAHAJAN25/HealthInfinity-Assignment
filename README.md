@@ -30,3 +30,12 @@ As we know the numbers keep on generating indefinitely , the list of data points
 - I set a limit of 300 points (which equals 30 seconds of data at 100 ms intervals)
 - If the list exceeds 300, the oldest point at index 0 is removed
 - This ensures memory usage stays constant
+``` kotlin
+ if (newlist.size > 300) 
+ {
+    newlist.removeAt(0)
+} ```
+
+## Question 3 - Architectural Changes to keep ui responsive at 1ms
+
+
